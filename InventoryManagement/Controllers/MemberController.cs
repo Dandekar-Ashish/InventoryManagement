@@ -28,10 +28,10 @@ namespace InventoryManagement.Controllers
             return Ok(members);
         }
 
-        [HttpGet("{bookingId}")]
-        public async Task<ActionResult> Get(int bookingId)
+        [HttpGet("{memberId}")]
+        public async Task<ActionResult> Get(int memberId)
         {
-            var member = await _memberService.GetMemberById(bookingId);
+            var member = await _memberService.GetMemberById(memberId);
             return Ok(member);
         }
 

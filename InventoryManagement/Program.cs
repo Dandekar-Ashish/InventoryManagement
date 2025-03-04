@@ -23,7 +23,10 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseInMemoryDatabase("InMemoryDb"));
+{
+    string dbName = builder.Configuration.GetConnectionString("InMemoryDbConnection") ?? throw new InvalidOperationException("DB ConnectionString not found. Check Appsetting. ");
+    options.UseInMemoryDatabase(dbName);
+    });
 
 var app = builder.Build();
 
